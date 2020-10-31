@@ -16,7 +16,7 @@
     "128": "icon-128.png"
   },
   "content_scripts": [{
-    "matches": ["*://*/*", "<all_urls>"],
+    "matches": ["<all_urls>"],
     "js": ["contentScript.bundle.js"],
     "css": ["content.styles.css"],
     "permissions": [
@@ -33,10 +33,10 @@
   "manifest_version": 2,
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
   "permissions": [
-    "processes",
     "tabs",
     "tabCapture",
     "activeTab",
+    "<all_urls>",
     "webNavigation",
     "storage",
     "chrome://favicon/*"
