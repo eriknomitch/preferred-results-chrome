@@ -4,4 +4,15 @@ import { render } from 'react-dom';
 import Newtab from './Newtab';
 import './index.css';
 
-render(<Newtab />, window.document.querySelector('#app-container'));
+const renderNewTab = (tabs) => {
+  render(<Newtab tabs={tabs} />, window.document.querySelector('#app-container'));
+};
+
+chrome.runtime.onMessage.addListener((msg, sender) => {
+  if (msg.action === 'setData') {
+    renderNewTab(msg.tabs);
+  }
+});
+
+renderNewTab([]);
+
