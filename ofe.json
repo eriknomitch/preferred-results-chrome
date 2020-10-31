@@ -1,6 +1,7 @@
 {
   "default": {
-    "extensions": [".json", ".js", ".ts", ".jsx", ".tsx"]
+    "extensions": [".json", ".js", ".ts", ".jsx", ".tsx"],
+    "exclusions": ["node_modules/", "build/"]
   },
   "docs": {
     "extensions": [".md"],
