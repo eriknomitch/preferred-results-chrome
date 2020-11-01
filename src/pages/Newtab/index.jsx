@@ -8,9 +8,7 @@ import _ from 'lodash';
 
 const renderNewTab = (tabs) => {
 
-  const tabsSorted = _.groupBy(tabs, "hostname");
-
-  render(<Newtab tabs={tabsSorted} />, window.document.querySelector('#app-container'));
+  render(<Newtab tabs={tabs} />, window.document.querySelector('#app-container'));
 };
 
 chrome.runtime.onMessage.addListener((msg, sender) => {
