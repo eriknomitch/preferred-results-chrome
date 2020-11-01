@@ -8,10 +8,6 @@ console.log('Put the background scripts here.');
 
 chrome.tabs.onUpdated.addListener(function listener(tabId, changedProps, tab) {
 
-  if (tab.url.startsWith('chrome://')) {
-    return;
-  }
-
   // ---------------------------------------------
   chrome.tabs.query({ currentWindow: true, active: false }, (tabs) => {
     const tabsToManage = _.compact(
