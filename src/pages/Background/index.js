@@ -1,39 +1,38 @@
 import '../../assets/img/icon-34.png';
 import '../../assets/img/icon-128.png';
 
+import _ from 'lodash';
+
 console.log('This is the background page.');
 console.log('Put the background scripts here.');
 
 chrome.tabs.onUpdated.addListener(function listener(tabId, changedProps, tab) {
-  // console.log(tabId);
-  // console.log(changedProps);
-  // console.log(chrome.tabs);
-  console.log('tab:');
-  console.log(tab);
 
-  if (tab.url !== 'chrome://newtab/') {
+  if (tab.url.startsWith('chrome://')) {
     return;
   }
 
-  chrome.tabs.query({ currentWindow: true }, (tabs) => {
-    chrome.runtime.sendMessage({ action: 'setData', tabs }, (response) => {
-      console.log(response);
-    });
+  // ---------------------------------------------
+  chrome.tabs.query({ currentWindow: true, active: false }, (tabs) => {
+    const tabsToManage = _.compact(
+      tabs.map((tab) => {
+        // Don't manage any chrome:// tabs
+        if (tab.url.startsWith('chrome://')) {
+          return null;
+        }
+
+        // Extract the hostname
+        // -----------------------------------------
+        const hostname = new URL(tab.url).hostname;
+
+        tab.hostname = hostname;
+
+        return tab;
+      })
+    );
+
+    // Send tabs to content script
+    // -------------------------------------------
+    chrome.runtime.sendMessage({ action: 'setData', tabs: tabsToManage });
   });
-
-  // chrome.tabs.executeScript(
-  //   tab.id,
-  //   {
-  //     code:
-  //       'document.getElementsByTagName("header")[0].style.backgroundColor = "red"',
-  //   },
-  //   (result) => {
-  //     console.log("result:");
-  //     console.log(result);
-  //   }
-  // );
-
-  // chrome.tabs.query({}, function (tabs) {
-  //   console.log(tabs);
-  // });
 });

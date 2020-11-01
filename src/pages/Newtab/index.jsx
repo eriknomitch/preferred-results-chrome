@@ -4,8 +4,13 @@ import { render } from 'react-dom';
 import Newtab from './Newtab';
 import './index.css';
 
+import _ from 'lodash';
+
 const renderNewTab = (tabs) => {
-  render(<Newtab tabs={tabs} />, window.document.querySelector('#app-container'));
+
+  const tabsSorted = _.groupBy(tabs, "hostname");
+
+  render(<Newtab tabs={tabsSorted} />, window.document.querySelector('#app-container'));
 };
 
 chrome.runtime.onMessage.addListener((msg, sender) => {

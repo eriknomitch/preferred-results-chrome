@@ -4,7 +4,7 @@ import './Newtab.scss';
 
 const Newtab = (props) => {
   const { tabs } = props;
-  debugger;
+  console.log(tabs);
   return (
     <div className="App">
       <header className="App-header">
