@@ -34,8 +34,6 @@ chrome.tabs.onUpdated.addListener(function listener(tabId, changedProps, tab) {
       tabGroups[hostname].push(tab);
     });
 
-    console.log(tabGroups);
-
     // Send tabs to content script
     // -------------------------------------------
     chrome.runtime.sendMessage({ action: 'setData', tabs: tabGroups });
