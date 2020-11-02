@@ -1,5 +1,5 @@
 {
-  "name": "Preferred Results",
+  "name": "Tab Reaper",
   "options_page": "options.html",
   "background": {
     "scripts": ["background.bundle.js"]

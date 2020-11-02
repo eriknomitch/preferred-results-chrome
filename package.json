@@ -1,11 +1,11 @@
 {
-  "name": "preferred-results",
+  "name": "tab-reaper",
   "version": "3.1.2",
   "description": "A chrome extension to highlight search results based on domain.",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/eriknomitch/preferred-results.git"
+    "url": "https://github.com/eriknomitch/tab-reaper.git"
   },
   "scripts": {
     "build": "node utils/build.js",
